@@ -4,6 +4,7 @@ number = ['1', '2', '3']
 shading = ['filled', 'shaded', 'emply']
 
 class SET: 
+    # Bulletpoint 1
     def __init__(self, color,symbol,number,shading): 
         self.color = color      
         self.symbol = symbol
@@ -49,3 +50,5 @@ class SET:
         else:
             return True
 
+    # Bullet point 2
+        
