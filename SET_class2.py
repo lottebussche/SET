@@ -3,6 +3,7 @@ symbol = ['oval', 'squiggle', 'diamond']
 number = ['1', '2', '3']
 shading = ['filled', 'shaded', 'emply']
 
+from itertools import combinations 
 class SET: 
     # Bulletpoint 1 en 2
     # First we are going to define what color, symbol, number, and shading it is.
@@ -47,6 +48,10 @@ class SET:
             return False
         else: # If there is no False in the list, thus only True, all comparisons give True, thus it is a SET, return True.
             return True
+
+    combination = combinations([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 3)
+    for index in list(combination):
+        print(index)
 
 kaart1 = SET('purple', 'oval', 'filled', '1')
 kaart2 = SET('purple', 'oval', 'shaded', '2')
