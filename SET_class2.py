@@ -7,25 +7,28 @@ class SET:
     # Bulletpoint 1 en 2
     # First we are going to define what color, symbol, number, and shading it is.
     def __init__(self, color,symbol,number,shading): 
-        self.color = color      
+        self.color = color     
         self.symbol = symbol
         self.number = number
         self.shading = shading
 
     # Now we are going to compare three cards with each other.
     def compare(self, other1, other2):
+        print(1)
         lijst = [] # We have an empty list, where we add True and False
         def compare_color(self, other1, other2): # We are going to compare the colors of the cards
             if self.color == other1.color and self.color == other2.color: # If they all have the same color, the list should append True
-                lijst.append(True)
+                return True
             if self.color != other1.color and self.color != other2.color and other1.color != other2.color: # If they are all different colors, the list should append True
-                lijst.append(True)
+                return True
             else: # If the colors are not all different or the same, the list should append False
-                lijst.append(False)
-                
+                return False
+
+        print(compare_color(kaart1, kaart2, kaart3))  
+
         def compare_symbol(self,other1, other2): # We are going to compare the symbols of the cards
             if self.symbol == other1.symbol and self.symbol == other2.symbol: # If they all have the same symbol, the list should append True
-                lijst.append(True)
+                return True
             if self.symbol != other1.symbol and self.symbol != other2.symbol and other1.symbol != other2.symbol: # If they all have different symbols, the list should append True
                 lijst.append(True)
             else: # If the symbols are not all different or the same, the list should append False
@@ -47,7 +50,8 @@ class SET:
             else: # If the shades are not all different or the same, the list should append False
                 lijst.append(False)
 
-        if False in lijst: # If there is False in the list, thus one or more comparisons give False, then it is not a SET.
+
+        if compare_color(self, other1, other2) == False or compare_symbol(self, other1, other2) == False or compare_number(self, other1, other2) == False or compare_shading(self, other1, other2) == False: # If there is False in the list, thus one or more comparisons give False, then it is not a SET.
             return False
         else: # If there is no False in the list, thus only True, all comparisons give True, thus it is a SET, return True.
             return True
