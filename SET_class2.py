@@ -9,3 +9,6 @@ class SET:
         self.symbol = symbol
         self.number = number
         self.shading = shading
+
+    def compare(self, other):
+        
