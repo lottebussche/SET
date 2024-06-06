@@ -1,8 +1,9 @@
 color = ['red', 'green', 'purple']
 symbol = ['oval', 'squiggle', 'diamond']
 number = ['1', '2', '3']
-shading = ['filled', 'shaded', 'emply']
+shading = ['filled', 'shaded', 'empty']
 
+from itertools import combinations
 class SET: 
     # Bulletpoint 1 en 2
     # First we are going to define what color, symbol, number, and shading it is.
@@ -53,9 +54,6 @@ class SET:
         else: # If there is no False in the list, thus only True, all comparisons give True, thus it is a SET, return True.
             return True
 
-kaart1 = SET('green', 'oval', 'filled', '1')
-kaart2 = SET('purple', 'oval', 'shaded', '2')
-kaart3 = SET('red' ,'oval', 'empty', '3')
 
 kaart1 = SET('green', 'oval', 'filled', '1')
 kaart2 = SET('purple', 'oval', 'shaded', '2')
@@ -64,9 +62,7 @@ kaart4 = SET('green', 'squiggle', 'empty', '1')
 kaart5 = SET('purple', 'diamond', 'empty', '2')
 kaart6 = SET('purple', 'diamond', 'shaded', '2')
 kaart7 = SET('purple', 'squiggle', 'shaded', '3')
-combination = combinations(['kaart1', 'kaart2', 'kaart3', 'kaart4', 'kaart5', 'kaart6', 'kaart7'], 3)
+combination = combinations([kaart1, kaart2, kaart3, kaart4, kaart5, kaart6, kaart7], 3)
 for index in list(combination):
-    print(index[0])
     print(index[0].compare(index[1], index[2]))
 
-print(kaart1.compare(kaart2, kaart3))
