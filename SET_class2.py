@@ -24,7 +24,7 @@ class SET:
                 lijst.append(False)
                 
         def compare_symbol(self,other1, other2): # We are going to compare the symbols of the cards
-            if self.symbol = other1.symbol and self.symbol == other2.symbol: # If they all have the same symbol, the list should append True
+            if self.symbol == other1.symbol and self.symbol == other2.symbol: # If they all have the same symbol, the list should append True
                 lijst.append(True)
             if self.symbol != other1.symbol and self.symbol != other2.symbol and other1.symbol != other2.symbol: # If they all have different symbols, the list should append True
                 lijst.append(True)
