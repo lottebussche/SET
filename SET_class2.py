@@ -14,7 +14,6 @@ class SET:
 
     # Now we are going to compare three cards with each other.
     def compare(self, other1, other2):
-        print(1)
         lijst = [] # We have an empty list, where we add True and False
         def compare_color(self, other1, other2): # We are going to compare the colors of the cards
             if self.color == other1.color and self.color == other2.color: # If they all have the same color, the list should append True
@@ -23,8 +22,7 @@ class SET:
                 return True
             else: # If the colors are not all different or the same, the list should append False
                 return False
-
-        print(compare_color(kaart1, kaart2, kaart3))  
+ 
 
         def compare_symbol(self,other1, other2): # We are going to compare the symbols of the cards
             if self.symbol == other1.symbol and self.symbol == other2.symbol: # If they all have the same symbol, the list should append True
@@ -49,7 +47,7 @@ class SET:
                 lijst.append(True)
             else: # If the shades are not all different or the same, the list should append False
                 lijst.append(False)
-
+        print(compare_symbol(self, other1, other2))
 
         if compare_color(self, other1, other2) == False or compare_symbol(self, other1, other2) == False or compare_number(self, other1, other2) == False or compare_shading(self, other1, other2) == False: # If there is False in the list, thus one or more comparisons give False, then it is not a SET.
             return False
@@ -58,8 +56,8 @@ class SET:
 
 kaart1 = SET('green', 'oval', 'filled', '1')
 kaart2 = SET('purple', 'oval', 'shaded', '2')
-kaart3 = SET('red' ,'oval', 'empty', '3')
-print(kaart1, kaart2, kaart3)
+kaart3 = SET('red' ,'oval', 'empty', '2')
+print(kaart1.compare(kaart2, kaart3))
 
 
         
