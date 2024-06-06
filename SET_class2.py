@@ -52,5 +52,10 @@ class SET:
         else: # If there is no False in the list, thus only True, all comparisons give True, thus it is a SET, return True.
             return True
 
+kaart1 = SET('green', 'oval', 'filled', '1')
+kaart2 = SET('purple', 'oval', 'shaded', '2')
+kaart3 = SET('red' ,'oval', 'empty', '3')
+print(kaart1, kaart2, kaart3)
+
 
         
