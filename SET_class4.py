@@ -8,7 +8,7 @@ list_of_81_cards = [[a, b, c, d]
                 for a in color
                 for b in symbol
                 for c in shading
-                for d in number]
+                for d in number] # a list of all existing 81 cards
 
 
 from itertools import combinations
@@ -62,14 +62,17 @@ class SET:
             return False
         else: # If there is no False in the list, thus only True, all comparisons give True, thus it is a SET, return True.
             return True
-    def give_values(self, other1, other2):
+    def give_values(self, other1, other2): #for visuals/tests, that we can see what sets are actually true
             return ([self.color, self.symbol, self.shading, self.number],
                     [other1.color, other1.symbol, other1.shading, other1.number],
                     [other2.color, other2.symbol, other2.shading, other2.number])
 
 
-list_12_random_numbers = random.sample(range(0, 81), 12)
-print(list_12_random_numbers)
+list_12_random_numbers = random.sample(range(0, 81), 12) #generate 12 random numbers
+
+print(list_12_random_numbers) # not essential
+
+#12 random cards
 kaart1 = SET(list_of_81_cards[list_12_random_numbers[0]])
 kaart2 = SET(list_of_81_cards[list_12_random_numbers[1]])
 kaart3 = SET(list_of_81_cards[list_12_random_numbers[2]])
@@ -83,9 +86,10 @@ kaart10 = SET(list_of_81_cards[list_12_random_numbers[9]])
 kaart11 = SET(list_of_81_cards[list_12_random_numbers[10]])
 kaart12 = SET(list_of_81_cards[list_12_random_numbers[11]])
 
+#all possible combinations
 combination = combinations([kaart1, kaart2, kaart3, kaart4, kaart5, kaart6, kaart7, kaart8, kaart9, kaart10, kaart11, kaart12], 3)
 for index in list(combination):
-    True_or_False = (index[0].compare(index[1], index[2]))
-    Three_tested_cards = (index[0].give_values(index[1], index[2]))
+    True_or_False = (index[0].compare(index[1], index[2])) #if a random combination is true or false
+    Three_tested_cards = (index[0].give_values(index[1], index[2])) #the corresponding cards that belong to true or false
     if True_or_False == True:
         print (True_or_False, Three_tested_cards)
