@@ -58,7 +58,7 @@ for i in range(12):
     print(f"Card {i+1}: {card} (index {list_12_random_numbers[i]})")
 
 # Check all combinations for valid sets
-combination = combinations(range(12), 3)  # Use indices directly
+combination = combinations(range(12), 3)  
 for combo in combination:
     card1, card2, card3 = cards[combo[0]], cards[combo[1]], cards[combo[2]]
     if card1.compare(card2, card3):
