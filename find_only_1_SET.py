@@ -1,11 +1,6 @@
-#This code simulates a simplified version of the card game SET. It generates all possible cards with 
-# four attributes (color, symbol, shading, and number), each having three possible values. 
-# It then randomly selects 12 unique cards from this deck. Each selected card is assigned a number from 1 to 12 
-# and its attributes and original index are printed. The code then checks all possible combinations of these 12 
-# cards in groups of three to determine if they form a valid SET. A valid SET is defined as a trio of cards 
-# where each attribute is either all the same or all different across the three cards. If a valid SET is found, 
-# the assigned numbers of these cards are printed.
-
+#This updated algorithm finds and prints the first valid SET among 12 randomly selected cards from a deck. 
+# Once it finds a valid SET, it prints the assigned numbers of these cards and stops further checks. 
+# If no SET is found, it prints a message indicating so. 
 
 from itertools import combinations
 import random
@@ -66,10 +61,15 @@ for i in range(12):
     card = list_of_81_cards[list_12_random_numbers[i]]
     print(f"Card {i+1}: {card} (index {list_12_random_numbers[i]})")
 
-# Check all combinations for valid sets
-combination = combinations(range(12), 3)  
+# Check all combinations for the first valid set
+combination = combinations(range(12), 3)  # Use indices directly
+set_found = False
 for combo in combination:
     card1, card2, card3 = cards[combo[0]], cards[combo[1]], cards[combo[2]]
     if card1.compare(card2, card3):
         print(f"SET found with card numbers: {combo[0] + 1}, {combo[1] + 1}, {combo[2] + 1}")
+        set_found = True
+        break
 
+if not set_found:
+    print("No SET found among the selected cards.")
