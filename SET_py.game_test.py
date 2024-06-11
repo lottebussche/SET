@@ -4,10 +4,6 @@ import pygame
 import time
 
 pygame.display.set_mode()
-pygame.image.load()
-
-what_time_left = pygame.time.Clock()
-
 # Card attributes
 color = ['red', 'green', 'purple']
 symbol = ['oval', 'squiggle', 'diamond']
@@ -51,6 +47,7 @@ class SET:
                 [other1.color, other1.symbol, other1.shading, other1.number],
                 [other2.color, other2.symbol, other2.shading, other2.number])
 
+
 # Generate 12 random card indices
 list_12_random_numbers = random.sample(range(0, 81), 12)
 print("Random card indices:", list_12_random_numbers)
@@ -58,11 +55,14 @@ print("Random card indices:", list_12_random_numbers)
 # Create 12 SET objects
 cards = [SET(list_of_81_cards[i]) for i in list_12_random_numbers]
 
+
 # Print the 12 selected cards
 print("Selected cards:")
 for i in range(12):
     card = list_of_81_cards[list_12_random_numbers[i]]
-    print(f"Card {i+1}: {card} (index {list_12_random_numbers[i]})")
+    filename_card = (list_of_81_cards[list_12_random_numbers[i]][0] + list_of_81_cards[list_12_random_numbers[i]][1] + list_of_81_cards[list_12_random_numbers[i]][2] + list_of_81_cards[list_12_random_numbers[i]][3])
+    print(f"Card {i+1}: {filename_card} (index {list_12_random_numbers[i]})")
+
 
 # Check all combinations for the first valid set
 combination = combinations(range(12), 3)  # Use indices directly
