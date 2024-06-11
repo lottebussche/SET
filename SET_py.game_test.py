@@ -2,6 +2,13 @@ from itertools import combinations
 import random
 import pygame
 import time
+import os
+
+# What we should do:
+# So, the input should come from an user. The user says what SET he found.
+# Then using find_all_sets <- maybe using this as a definition, check whether the input is a SET.
+# If the input is a SET, ...
+# If not, then ...
 
 pygame.display.set_mode()
 # Card attributes
@@ -76,4 +83,6 @@ for combo in combination:
 
 if not set_found:
     print("No SET found among the selected cards.")
+    # I suppose we should do here something with that we delete 3 cards, and add 3 cards. And not No SET ...
+
 
