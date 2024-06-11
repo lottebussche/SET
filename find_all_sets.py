@@ -48,11 +48,6 @@ class SET:
                 compare_number(self, other1, other2) and
                 compare_shading(self, other1, other2))
 
-    def give_values(self, other1, other2):
-        return ([self.color, self.symbol, self.shading, self.number],
-                [other1.color, other1.symbol, other1.shading, other1.number],
-                [other2.color, other2.symbol, other2.shading, other2.number])
-
 # Generate 12 random card indices
 list_12_random_numbers = random.sample(range(0, 81), 12)
 print("Random card indices:", list_12_random_numbers)
