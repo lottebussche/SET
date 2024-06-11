@@ -62,5 +62,5 @@ combination = combinations(range(12), 3)  # Use indices directly
 for combo in combination:
     card1, card2, card3 = cards[combo[0]], cards[combo[1]], cards[combo[2]]
     if card1.compare(card2, card3):
-        print("SET found with card indices:", (list_12_random_numbers[combo[0]], list_12_random_numbers[combo[1]], list_12_random_numbers[combo[2]]))
+        print(f"SET found with card numbers: {combo[0] + 1}, {combo[1] + 1}, {combo[2] + 1}")
 
