@@ -1,5 +1,12 @@
 from itertools import combinations
 import random
+import pygame
+import time
+
+pygame.display.set_mode()
+pygame.image.load()
+
+what_time_left = pygame.time.Clock()
 
 # Card attributes
 color = ['red', 'green', 'purple']
