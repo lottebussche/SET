@@ -12,11 +12,11 @@ shading = ['filled', 'shaded', 'empty']
 number = ['1', '2', '3']
 
 # Generate all possible cards
-list_of_81_cards = [[a, b, c, d] 
-                    for a in color
-                    for b in symbol
-                    for c in shading
-                    for d in number]
+list_of_81_cards = [[col, sym, shad, num] 
+                    for col in color
+                    for sym in symbol
+                    for shad in shading
+                    for num in number]
 
 class SET: 
     def __init__(self, cardlist): 
