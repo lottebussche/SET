@@ -1,28 +1,30 @@
+from itertools import combinations
+import random
+
+#Define card attribute
 color = ['red', 'green', 'purple']
 symbol = ['oval', 'squiggle', 'diamond']
 shading = ['filled', 'shaded', 'emply']
 number = ['1', '2', '3']
 
-
+#Generate all possible cards
 list_of_81_cards = [[a, b, c, d] 
                 for a in color
                 for b in symbol
                 for c in shading
-                for d in number] # a list of all existing 81 cards
+                for d in number] 
 
-
-from itertools import combinations
-import random
+#Define SET class
 class SET: 
     # Bulletpoint 1 en 2
-    # First we are going to define what color, symbol, number, and shading it is.
+    # Define what color, symbol, number, and shading it is.
     def __init__(self, cardlist): 
         self.color = cardlist[0]     
         self.symbol = cardlist[1]
         self.shading = cardlist[2]
         self.number = cardlist[3]
 
-    # Now we are going to compare three cards with each other.
+    #Compare three cards with each other.
     def compare(self, other1, other2):
         lijst = [] # We have an empty list, where we add True and False
         def compare_color(self, other1, other2): # We are going to compare the colors of the cards
@@ -67,8 +69,8 @@ class SET:
                     [other1.color, other1.symbol, other1.shading, other1.number],
                     [other2.color, other2.symbol, other2.shading, other2.number])
 
-
-list_12_random_numbers = random.sample(range(0, 81), 12) #generate 12 random numbers
+#Select 12 random cards
+list_12_random_numbers = random.sample(range(0, 81), 12) 
 
 print(list_12_random_numbers) # not essential
 
