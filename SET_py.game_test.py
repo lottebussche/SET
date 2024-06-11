@@ -12,7 +12,7 @@ import os
 
 
 
-pygame.display.set_mode()
+#pygame.display.set_mode()
 
 # Card attributes
 color = ['red', 'green', 'purple']
