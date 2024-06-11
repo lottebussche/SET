@@ -10,7 +10,10 @@ import os
 # If the input is a SET, ...
 # If not, then ...
 
+
+
 pygame.display.set_mode()
+
 # Card attributes
 color = ['red', 'green', 'purple']
 symbol = ['oval', 'squiggle', 'diamond']
@@ -57,32 +60,60 @@ class SET:
 
 # Generate 12 random card indices
 list_12_random_numbers = random.sample(range(0, 81), 12)
-print("Random card indices:", list_12_random_numbers)
+#print("Random card indices:", list_12_random_numbers)
 
 # Create 12 SET objects
 cards = [SET(list_of_81_cards[i]) for i in list_12_random_numbers]
 
 
 # Print the 12 selected cards
-print("Selected cards:")
+#print("Selected cards:")
 for i in range(12):
     card = list_of_81_cards[list_12_random_numbers[i]]
     filename_card = (list_of_81_cards[list_12_random_numbers[i]][0] + list_of_81_cards[list_12_random_numbers[i]][1] + list_of_81_cards[list_12_random_numbers[i]][2] + list_of_81_cards[list_12_random_numbers[i]][3])
-    print(f"Card {i+1}: {filename_card} (index {list_12_random_numbers[i]})")
+    #print(f"Card {i+1}: {filename_card} (index {list_12_random_numbers[i]})")
+
+
+# Check all combinations for valid sets
+# This below checks all SETS that are possible with 12 random cards. When it is possible, we add it to the list called list_of_all_SET.
+list_of_all_SET = []
+combination = combinations(range(12), 3)  
+for combi in combination:
+    card1, card2, card3 = cards[combi[0]], cards[combi[1]], cards[combi[2]]
+    if card1.compare(card2, card3):
+        list_of_all_SET.append([combi[0] + 1, combi[1] + 1, combi[2] + 1])
 
 
 # Check all combinations for the first valid set
 combination = combinations(range(12), 3)  # Use indices directly
 set_found = False
-for combo in combination:
-    card1, card2, card3 = cards[combo[0]], cards[combo[1]], cards[combo[2]]
+for combi in combination:
+    card1, card2, card3 = cards[combi[0]], cards[combi[1]], cards[combi[2]]
     if card1.compare(card2, card3):
-        print(f"SET found with card numbers: {combo[0] + 1}, {combo[1] + 1}, {combo[2] + 1}")
+        print(f"SET found with card numbers: {combi[0] + 1}, {combi[1] + 1}, {combi[2] + 1}")
         set_found = True
         break
 
 if not set_found:
     print("No SET found among the selected cards.")
-    # I suppose we should do here something with that we delete 3 cards, and add 3 cards. And not No SET ...
+
+# I suppose we should do here something with that we delete 3 cards, and add 3 cards. And not No SET ...
+
+
+# We take the input of the user, this is a list like '1, 3, 6', as mentioned in the assignment.
+input = input("What SET did you find? ").split(', ')
+for index in range(3):
+    input[index] = int(input[index])
+
+# Now we look whether the input of the user is a valid SET. We do this by checking whether it is in the list we just created.
+if input in list_of_all_SET:
+    print("Good Job!")
+else:
+    print("Unfortunately not, try again!")
+
+
+
+
+
 
 
