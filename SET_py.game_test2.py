@@ -3,6 +3,7 @@ import random
 import pygame
 import time
 import os
+import threading
 
 
 #pygame.display.set_mode()
@@ -97,7 +98,8 @@ for combi in combination:
 
 if not set_found:
     answer_computer = "No SET found among the selected cards."
-
+# kan nog weg
+print (answer_computer)
 # I suppose we should do here something with that we delete 3 cards, and add 3 cards. And not No SET ...
 list_of_extra_cards = []
 for i in range(3):
@@ -106,20 +108,49 @@ for i in range(3):
     list_of_extra_cards.append(filename_extra_card)
 
 # We take the input of the user, this is a list like '1, 3, 6', as mentioned in the assignment.
-input = input("What SET did you find? ").split(', ')
-for index in range(3):
-    input[index] = int(input[index])
+def get_user_input():
+    global input_of_user
+    input_of_user = input("What SET did you find? ") 
+    input_of_user = input_of_user.split(', ')
+    for index in range(3):
+        input_of_user[index] = int(input_of_user[index])
+
+# We use a timeout as we play the game on time
+def get_input_with_timeout(timeout):
+    global input_of_user
+    input_of_user = None
+    input_thread = threading.Thread(target=get_user_input)
+    input_thread.start()
+    input_thread.join(timeout=timeout)  
+
+    if input_thread.is_alive():
+        print ("Time is up.", answer_computer)
+        input_thread.join()  
+        return None
+        
+    return input_of_user
+
+#Timeout is how many seconds we want to give to the player to find a set
+timeout = 10
+result = get_input_with_timeout(timeout)
+
+if result is not None:
+    print(f"Input is: {result}")
+
 
 # Now we look whether the input of the user is a valid SET. We do this by checking whether it is in the list we just created.
-if input in list_of_all_SET:
+if input_of_user in list_of_all_SET:
     print("Good Job!")
-    list_of_cards.remove(list_of_cards[input[0] - 1])
-    list_of_cards.remove(list_of_cards[input[1] - 1])
-    list_of_cards.remove(list_of_cards[input[2] - 1])
+    list_of_cards.remove(list_of_cards[input_of_user[0] - 1])
+    list_of_cards.remove(list_of_cards[input_of_user[1] - 1])
+    list_of_cards.remove(list_of_cards[input_of_user[2] - 1])
     list_of_cards.append(list_of_extra_cards[0])
     list_of_cards.append(list_of_extra_cards[1])
     list_of_cards.append(list_of_extra_cards[2])
-# We should make an if loop here, if the time is up. So if time == 0: print("Unfortunately, the time is up. The computer will try now.")    print(answer_computer).
+
+
+
+
 # If the computer has not found a SET either, then list_of_cards.remove(list_of_cards[0])
     #list_of_cards.remove(list_of_cards[1])
     #list_of_cards.remove(list_of_cards[2])
@@ -131,3 +162,13 @@ else:
     print(answer_computer)
 
 # He should repeat this several times, thus this should be a function.
+def remove_cards():
+    for input_of_user in list_of_all_SET:
+        list_of_81_cards.remove(input_of_user) and list_12_random_numbers.remove(input_of_user)
+    else: list_of_81_cards.remove(answer_computer) and list_12_random_numbers.remove(answer_computer)
+
+# Add new cards
+def add_new_cards():
+    try: 
+        list_12_random_numbers = random.sample(range(0, 81), 12)
+    except: print("no cards left")
