@@ -71,7 +71,7 @@ cards = [SET(list_of_81_cards[i]) for i in list_12_random_numbers]
 for i in range(12):
     card = list_of_81_cards[list_12_random_numbers[i]]
     filename_card = (list_of_81_cards[list_12_random_numbers[i]][0] + list_of_81_cards[list_12_random_numbers[i]][1] + list_of_81_cards[list_12_random_numbers[i]][2] + list_of_81_cards[list_12_random_numbers[i]][3])
-    #print(f"Card {i+1}: {filename_card} (index {list_12_random_numbers[i]})")
+    print(f"Card {i+1}: {filename_card} (index {list_12_random_numbers[i]})")
 
 
 # Check all combinations for valid sets
