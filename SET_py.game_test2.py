@@ -159,16 +159,19 @@ while len(list_of_81_random_numbers) > 11:
         print(list_of_81_random_numbers)
         timeout = 10
 
-
-    if answer_computer == "No SET found among the selected cards.":
-        list_of_81_random_numbers.remove(list_of_81_random_numbers[11])
-        list_of_81_random_numbers.remove(list_of_81_random_numbers[10])
-        list_of_81_random_numbers.remove(list_of_81_random_numbers[9])
-        print(list_of_81_random_numbers)
     else:
         print("Unfortunately not, the computer will try.")
-        list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[0] - 1])
-        list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[1] - 2])
-        list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[2] - 3])
-        print(list_of_81_random_numbers)
-        timeout = 10
+        if answer_computer == "No SET found among the selected cards.":
+            print(answer_computer)
+            list_of_81_random_numbers.remove(list_of_81_random_numbers[11])
+            list_of_81_random_numbers.remove(list_of_81_random_numbers[10])
+            list_of_81_random_numbers.remove(list_of_81_random_numbers[9])
+            print(list_of_81_random_numbers)
+            timeout = 10
+        else:
+            list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[0] - 1])
+            list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[1] - 2])
+            list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[2] - 3])
+            print(list_of_81_random_numbers)
+            timeout = 10
+        
