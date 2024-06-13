@@ -21,6 +21,9 @@ list_of_81_cards = [[col, sym, shad, num]
                     for shad in shading
                     for num in number]
 
+list_of_81_random_numbers = random.sample(range(0, 81), 81)
+print(list_of_81_random_numbers)
+
 class SET: 
     def __init__(self, cardlist): 
         self.color = cardlist[0]     
@@ -53,7 +56,8 @@ class SET:
 
 
 # Generate 12 random card indices
-list_12_random_numbers = random.sample(range(0, 81), 12)
+list_12_random_numbers = list_of_81_random_numbers[:12] #the first 12 numbers of our selected 81 cards
+print(list_12_random_numbers)
 list_3_random_numbers = random.sample(range(0,81), 3)
 #print("Random card indices:", list_12_random_numbers)
 
@@ -132,7 +136,7 @@ def get_input_with_timeout(timeout):
     return input_of_user
 
 #Timeout is how many seconds we want to give to the player to find a set
-timeout = 30
+timeout = 5
 result = get_input_with_timeout(timeout)
 
 if result is not None:
