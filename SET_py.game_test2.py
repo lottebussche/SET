@@ -54,12 +54,12 @@ class SET:
                 [other1.color, other1.symbol, other1.shading, other1.number],
                 [other2.color, other2.symbol, other2.shading, other2.number])
 
-
-# Generate 12 random card indices
+#cards_on_table():
+        # Generate 12 random card indices
 list_12_random_numbers = list_of_81_random_numbers[:12] #the first 12 numbers of our selected 81 cards
 print(list_12_random_numbers)
 list_3_random_numbers = random.sample(range(0,81), 3)
-#print("Random card indices:", list_12_random_numbers)
+        #print("Random card indices:", list_12_random_numbers)
 
 cards = [SET(list_of_81_cards[i]) for i in list_12_random_numbers]
 
@@ -147,11 +147,8 @@ if result is not None:
 if input_of_user in list_of_all_SET:
     print("Good Job!")
     list_of_cards.remove(list_of_cards[input_of_user[0] - 1])
-    list_of_cards.remove(list_of_cards[input_of_user[1] - 1])
-    list_of_cards.remove(list_of_cards[input_of_user[2] - 1])
-    list_of_cards.append(list_of_extra_cards[0])
-    list_of_cards.append(list_of_extra_cards[1])
-    list_of_cards.append(list_of_extra_cards[2])
+    list_of_cards.remove(list_of_cards[input_of_user[1] - 2])
+    list_of_cards.remove(list_of_cards[input_of_user[2] - 3])
 
 
 # If the computer has not found a SET either, then list_of_cards.remove(list_of_cards[0])
