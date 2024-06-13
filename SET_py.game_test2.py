@@ -56,6 +56,7 @@ class SET:
                 [other2.color, other2.symbol, other2.shading, other2.number])
 
 while len(list_of_81_random_numbers) > 11: 
+    print(list_of_81_random_numbers)
     #cards_on_table():
             # Generate 12 random card indices
     list_12_random_numbers = list_of_81_random_numbers[:12] #the first 12 numbers of our selected 81 cards
@@ -99,6 +100,7 @@ while len(list_of_81_random_numbers) > 11:
         card1, card2, card3 = cards[combi[0]], cards[combi[1]], cards[combi[2]]
         if card1.compare(card2, card3):
             answer_computer = (f"SET found with card numbers: {combi[0] + 1}, {combi[1] + 1}, {combi[2] + 1}")
+            list_answer_computer = list(answer_computer)
             set_found = True
             break
 
@@ -138,7 +140,7 @@ while len(list_of_81_random_numbers) > 11:
         return input_of_user
 
     #Timeout is how many seconds we want to give to the player to find a set
-    timeout = 5
+    timeout = 10
     result = get_input_with_timeout(timeout)
 
     if result is not None:
@@ -148,9 +150,11 @@ while len(list_of_81_random_numbers) > 11:
     # Now we look whether the input of the user is a valid SET. We do this by checking whether it is in the list we just created.
     if input_of_user in list_of_all_SET:
         print("Good Job!")
-        list_of_cards.remove(list_of_cards[input_of_user[0] - 1])
-        list_of_cards.remove(list_of_cards[input_of_user[1] - 2])
-        list_of_cards.remove(list_of_cards[input_of_user[2] - 3])
+        print(list_of_cards[input_of_user[0] - 1])
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[0] - 1])
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[1] - 2])
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[2] - 3])
+        print(list_of_81_random_numbers)
 
 
     # If the computer has not found a SET either, then list_of_cards.remove(list_of_cards[0])
@@ -162,6 +166,11 @@ while len(list_of_81_random_numbers) > 11:
     else:
         print("Unfortunately not, the computer will try.")
         print(answer_computer)
+        print(list_of_cards[input_of_user[0] - 1])
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[0] - 1])
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[1] - 2])
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[2] - 3])
+        print(list_of_81_random_numbers)
 
     # Remove SET 
     def remove_cards():
