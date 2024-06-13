@@ -102,7 +102,7 @@ for combi in combination:
 
 if not set_found:
     answer_computer = "No SET found among the selected cards."
-    
+
 # kan nog weg
 print (answer_computer)
 # I suppose we should do here something with that we delete 3 cards, and add 3 cards. And not No SET ...
@@ -124,13 +124,13 @@ def get_user_input():
 def get_input_with_timeout(timeout):
     global input_of_user
     input_of_user = None
-    input_thread = threading.Thread(target=get_user_input)
-    input_thread.start()
-    input_thread.join(timeout=timeout)  
+    input_goal = threading.Thread(target=get_user_input)
+    input_goal.start()
+    input_goal.join(timeout=timeout)  
 
-    if input_thread.is_alive():
+    if input_goal.is_alive():
         print ("Time is up.", answer_computer)
-        input_thread.join()  
+        input_goal.join()  
         return None
         
     return input_of_user
@@ -154,8 +154,6 @@ if input_of_user in list_of_all_SET:
     list_of_cards.append(list_of_extra_cards[2])
 
 
-
-
 # If the computer has not found a SET either, then list_of_cards.remove(list_of_cards[0])
     #list_of_cards.remove(list_of_cards[1])
     #list_of_cards.remove(list_of_cards[2])
@@ -172,7 +170,7 @@ def remove_cards():
         list_of_81_cards.remove(input_of_user) and list_12_random_numbers.remove(input_of_user)
     else: list_of_81_cards.remove(answer_computer) and list_12_random_numbers.remove(answer_computer)
 
-print ()
+
 
 # Add new cards
 def add_new_cards():
