@@ -95,12 +95,19 @@ while len(list_of_81_random_numbers) > 11:
 
     # Check all combinations for the first valid set
     combination = combinations(range(12), 3)  # Use indices directly
+    list_answer_computer = []
     set_found = False
     for combi in combination:
         card1, card2, card3 = cards[combi[0]], cards[combi[1]], cards[combi[2]]
         if card1.compare(card2, card3):
             answer_computer = (f"SET found with card numbers: {combi[0] + 1}, {combi[1] + 1}, {combi[2] + 1}")
-            list_answer_computer = list(answer_computer)
+            answer_1 = combi[0] + 1
+            answer_2 = combi[1] + 1
+            answer_3 = combi[2] + 1
+            list_answer_computer.append(answer_1)
+            list_answer_computer.append(answer_2)
+            list_answer_computer.append(answer_3)
+            print(list_answer_computer)
             set_found = True
             break
 
@@ -148,7 +155,7 @@ while len(list_of_81_random_numbers) > 11:
 
 
     # Now we look whether the input of the user is a valid SET. We do this by checking whether it is in the list we just created.
-    if input_of_user in list_of_all_SET:
+    if sorted(input_of_user) in list_of_all_SET:
         print("Good Job!")
         print(list_of_cards[input_of_user[0] - 1])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[0] - 1])
@@ -166,7 +173,7 @@ while len(list_of_81_random_numbers) > 11:
     else:
         print("Unfortunately not, the computer will try.")
         print(answer_computer)
-        print(list_of_cards[input_of_user[0] - 1])
+        print(list_answer_computer[0])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[0] - 1])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[1] - 2])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[2] - 3])
