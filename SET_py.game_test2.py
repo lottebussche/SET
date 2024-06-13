@@ -56,11 +56,9 @@ class SET:
                 [other2.color, other2.symbol, other2.shading, other2.number])
 
 while len(list_of_81_random_numbers) > 11: 
-    print(list_of_81_random_numbers)
     #cards_on_table():
             # Generate 12 random card indices
     list_12_random_numbers = list_of_81_random_numbers[:12] #the first 12 numbers of our selected 81 cards
-    print(list_12_random_numbers)
     list_3_random_numbers = random.sample(range(0,81), 3)
             #print("Random card indices:", list_12_random_numbers)
 
@@ -107,7 +105,6 @@ while len(list_of_81_random_numbers) > 11:
             list_answer_computer.append(answer_1)
             list_answer_computer.append(answer_2)
             list_answer_computer.append(answer_3)
-            print(list_answer_computer)
             set_found = True
             break
 
@@ -140,15 +137,14 @@ while len(list_of_81_random_numbers) > 11:
         input_goal.join(timeout=timeout)  
 
         if input_goal.is_alive():
-            print ("Time is up.", answer_computer)
-            input_goal.join()  
-            return None
-            
+            return "timeout == 0"
+        
         return input_of_user
 
     #Timeout is how many seconds we want to give to the player to find a set
     timeout = 10
     result = get_input_with_timeout(timeout)
+
 
     if result is not None:
         print(f"Input is: {result}")
@@ -164,12 +160,11 @@ while len(list_of_81_random_numbers) > 11:
         timeout = 10
 
 
-    # If the computer has not found a SET either, then list_of_cards.remove(list_of_cards[0])
-        #list_of_cards.remove(list_of_cards[1])
-        #list_of_cards.remove(list_of_cards[2])
-        #list_of_cards.append(list_of_extra_cards[0]])
-        #list_of_cards.append(list_of_extra_cards[1])
-        #list_of_cards.append(list_of_extra_cards[2])
+    if answer_computer == "No SET found among the selected cards.":
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[11])
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[10])
+        list_of_81_random_numbers.remove(list_of_81_random_numbers[9])
+        print(list_of_81_random_numbers)
     else:
         print("Unfortunately not, the computer will try.")
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[0] - 1])
@@ -177,17 +172,3 @@ while len(list_of_81_random_numbers) > 11:
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[2] - 3])
         print(list_of_81_random_numbers)
         timeout = 10
-
-    # Remove SET 
-    def remove_cards():
-        for input_of_user in list_of_all_SET:
-            list_of_81_cards.remove(input_of_user) and list_12_random_numbers.remove(input_of_user)
-        else: list_of_81_cards.remove(answer_computer) and list_12_random_numbers.remove(answer_computer)
-
-
-
-    # Add new cards
-    def add_new_cards():
-        try: 
-            list_12_random_numbers = random.sample(range(0, 81), 12)
-        except: print("no cards left")
