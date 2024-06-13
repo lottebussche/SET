@@ -162,6 +162,7 @@ while len(list_of_81_random_numbers) > 11:
         list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[1] - 2])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[2] - 3])
         print(list_of_81_random_numbers)
+        timeout = 10
 
 
     # If the computer has not found a SET either, then list_of_cards.remove(list_of_cards[0])
@@ -178,6 +179,7 @@ while len(list_of_81_random_numbers) > 11:
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[1] - 2])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[2] - 3])
         print(list_of_81_random_numbers)
+        timeout = 10
 
     # Remove SET 
     def remove_cards():
