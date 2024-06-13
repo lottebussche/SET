@@ -157,7 +157,6 @@ while len(list_of_81_random_numbers) > 11:
     # Now we look whether the input of the user is a valid SET. We do this by checking whether it is in the list we just created.
     if sorted(input_of_user) in list_of_all_SET:
         print("Good Job!")
-        print(list_of_cards[input_of_user[0] - 1])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[0] - 1])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[1] - 2])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[input_of_user[2] - 3])
@@ -173,8 +172,6 @@ while len(list_of_81_random_numbers) > 11:
         #list_of_cards.append(list_of_extra_cards[2])
     else:
         print("Unfortunately not, the computer will try.")
-        print(answer_computer)
-        print(list_answer_computer[0])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[0] - 1])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[1] - 2])
         list_of_81_random_numbers.remove(list_of_81_random_numbers[list_answer_computer[2] - 3])
