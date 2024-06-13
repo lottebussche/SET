@@ -98,6 +98,7 @@ for combi in combination:
 
 if not set_found:
     answer_computer = "No SET found among the selected cards."
+    
 # kan nog weg
 print (answer_computer)
 # I suppose we should do here something with that we delete 3 cards, and add 3 cards. And not No SET ...
@@ -131,7 +132,7 @@ def get_input_with_timeout(timeout):
     return input_of_user
 
 #Timeout is how many seconds we want to give to the player to find a set
-timeout = 10
+timeout = 30
 result = get_input_with_timeout(timeout)
 
 if result is not None:
@@ -161,11 +162,13 @@ else:
     print("Unfortunately not, the computer will try.")
     print(answer_computer)
 
-# He should repeat this several times, thus this should be a function.
+# Remove SET 
 def remove_cards():
     for input_of_user in list_of_all_SET:
         list_of_81_cards.remove(input_of_user) and list_12_random_numbers.remove(input_of_user)
     else: list_of_81_cards.remove(answer_computer) and list_12_random_numbers.remove(answer_computer)
+
+print ()
 
 # Add new cards
 def add_new_cards():
