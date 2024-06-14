@@ -20,11 +20,11 @@ def main():
     background.fill((250, 250, 250)) #color??
 
     # Display some text
-    font = pygame.font.Font(None, 36)                   # font type
+    font = pygame.font.Font(None, 36)                   # Loads the default font at size 36
     text = font.render("SET game", 1, (10, 10, 10))     #titel maken in zwart
-    textpos = text.get_rect()                           #geen idee wat hier gebeurt
-    image = pygame.image.load(os.path.join("kaarten\greendiamondempty1.gif"))   #test plaatje laden
-    text_input_box = pygame.Rect(150, 150, 150, 32)     #text input box maken, die cijfers zijn iets van dimensies
+    textpos = text.get_rect()                           #Gets the rectangle area of the text
+    image = pygame.image.load(os.path.join("kaarten\greendiamondempty1.gif"))   #Loads an image from the specified path
+    text_input_box = pygame.Rect(150, 150, 150, 32)     #Creates a rectangular area for the text input box with specified dimensions
     
     textpos.centerx = background.get_rect().centerx #displays picture in the middle top of screen
     # blit makes a picture visible
@@ -50,6 +50,9 @@ def main():
                 # checking if key "A" was pressed
                     if event.key == pygame.K_a:
                         print("Key A has been pressed")
+                        
+            pygame.display.flip()
+        clock.tick(60)
 
 
 if __name__ == '__main__': main()
