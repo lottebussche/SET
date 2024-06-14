@@ -1,9 +1,10 @@
 from itertools import combinations
 import random
+import threading
 import pygame
 import time
 import os
-import threading
+
 
 
 #pygame.display.set_mode()
