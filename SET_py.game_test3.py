@@ -87,11 +87,17 @@ while len(list_of_81_random_numbers) > 11:
 
     if valid_sets:
         answer_computer = valid_sets[0] #This is the same as finding 1 set only!
+        answer1 = answer_computer[0]
+        answer2 = answer_computer[1]
+        answer3 = answer_computer[2]
     else:
         answer_computer = "No SET found among the selected cards."
     
     user_found_set = False
-    print("The computer answer: ",answer_computer)
+    if answer_computer != "No SET found among the selected cards.":
+        print("The computer answer: " + f"{answer1}" + ", " + f"{answer2}" + ", " f"{answer3}")
+    else: 
+        print(answer_computer)
 
     user_input = get_input_with_timeout(30)
 
@@ -110,7 +116,7 @@ while len(list_of_81_random_numbers) > 11:
                 print(list_of_81_random_numbers)
         
             else:
-                print("Computer found:", answer_computer)
+                print("The computer found: " + f"{answer1}" + ", " + f"{answer2}" + ", " f"{answer3}")
                 for index in sorted(answer_computer, reverse=True):
                     del list_of_81_random_numbers[index - 1]
                 
