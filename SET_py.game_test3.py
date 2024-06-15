@@ -106,7 +106,8 @@ while len(list_of_81_random_numbers) > 11:
             print("Unfortunately not, the computer will try.")
             if answer_computer == "No SET found among the selected cards.":
                 print(answer_computer)
-                del list_of_81_random_numbers[:3]
+                del list_of_81_random_numbers[9:11]
+                print(list_of_81_random_numbers)
         
             else:
                 print("Computer found:", answer_computer)
@@ -117,7 +118,8 @@ while len(list_of_81_random_numbers) > 11:
         print("Timeout! The computer will try.")
         if answer_computer == "No SET found among the selected cards.":
                 print(answer_computer)
-                del list_of_81_random_numbers[:3]
+                del list_of_81_random_numbers[9:11]
+
         
         else:
             print("Computer found:", answer_computer)
