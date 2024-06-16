@@ -55,9 +55,11 @@ pygame.display.set_caption("SET: Malou ter Horst, Lotte Bussche, Laura Mercenier
 font = pygame.font.Font(None, 32)
 user_text = ''
 input_rect = pygame.Rect(450, 80, 170, 32) #(left, top, width, height)
+#submit_box = pygame.Rect(450, 120, 170, 32)     #a button that you can click to submit your answers
+#button_text = font.render('submit', True, 'black', 'green')
 color_active = pygame.Color('lightskyblue3')
 color_passive = pygame.Color('chartreuse4')
-color = color_passive
+color = color_passive       #to know if the input rectangle has been clicked
 active = False
 
 # Card attributes
@@ -103,6 +105,24 @@ for i in range(0, 4):
     place = [10 + i * 110, 440]
     card_positions.append(place)
 
+
+
+#Takes input from the user
+def get_user_input(input_of_user):
+    result = input("What SET did you find? ").split(', ')
+    input_of_user.extend(result)
+#Sets a timeout for input collection.
+def get_input_with_timeout(timeout):
+    input_of_user = []
+    input_thread = threading.Thread(target=get_user_input, args=(input_of_user,))
+    input_thread.start()
+    input_thread.join(timeout)
+
+    if input_thread.is_alive():
+        return None
+    else:
+        return input_of_user
+
 # Game loop, neccesery to end the game
 running = True
 while running:
@@ -124,6 +144,7 @@ while running:
                 if len(user_text) == 7:
                     input_user = user_text
                     print(input_user)
+                    get_user_input(input_user)
     
     if active:
         color = color_active
@@ -142,25 +163,9 @@ while running:
     
     # Keep the screen and pygame updated 
     pygame.display.flip()
-    clock.tick(10)
 
 
-#Takes input from the user
-def get_user_input(input_of_user):
-    result = input("What SET did you find? ").split(', ')
-    input_of_user.extend(result)
-#Sets a timeout for input collection.
-def get_input_with_timeout(timeout):
-    input_of_user = []
-    input_thread = threading.Thread(target=get_user_input, args=(input_of_user,))
-    input_thread.start()
-    input_thread.join(timeout)
-
-    if input_thread.is_alive():
-        return None
-    else:
-        return input_of_user
-
+#the following is all code from our previous codes
 
 while len(list_of_81_random_numbers) > 11:
     cards = [SET(list_of_81_cards[i]) for i in list_12_random_numbers]
@@ -213,11 +218,14 @@ while len(list_of_81_random_numbers) > 11:
             print("Computer found:", answer_computer)
             for index in sorted(answer_computer, reverse=True):
                 del list_of_81_random_numbers[index - 1]
-
+                
     if not user_found_set and answer_computer == "No SET found among the selected cards.":
         print("No SET is possible with the current cards.")
 
     print("The cards that are left: ",list_of_81_random_numbers)
+
+
+
 # Quit pygame
 pygame.quit()
 sys.exit()
