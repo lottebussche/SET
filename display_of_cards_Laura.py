@@ -6,15 +6,16 @@ from itertools import combinations
 pygame.init()
 
 # Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = 1000, 800 #Dimensions of the game window
+SCREEN_WIDTH, SCREEN_HEIGHT = 1000, 700 #Dimensions of the game window
 CARD_WIDTH, CARD_HEIGHT = 100, 150 #Dimensions of each card image
-CARD_GAP = 60 #Space between cards
+CARD_GAP = 40 #Space between cards
 FONT_SIZE = 24 
 FONT_SIZE1 = 50
 FONT_SIZE2 = 18
-TIMEOUT = 30 #Timelimit for the user to find a SET
+TIMEOUT = 3 #Timelimit for the user to find a SET
 INPUT_BOX_COLOR = ("orchid4") #Color of the input box
 BACKGROUND_COLOR = ("ghostwhite") #Background color of the game window
+score_comp = 0
 
 # Set up the display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #Create a game window with specified width and height
@@ -115,6 +116,7 @@ def draw_instructions():
     for i, line in enumerate(instructions): #Iterates through each instruction line
         text = font.render(line, True, (0, 0, 0)) #Renders the instruction text
         screen.blit(text, (20, 20 + i * 30)) #Draws the text on the screen at the specified position
+        
 
 def draw_timer(): #Displays the remaining time on the screen
     elapsed_seconds = (pygame.time.get_ticks() - start_ticks) // 1000 #Calculates the elapsed time in seconds
@@ -155,19 +157,19 @@ def get_user_input(): #Captures user input from the keyboard
         draw_instructions()
         if not draw_timer():
             input_active = False
-        pygame.draw.rect(screen, INPUT_BOX_COLOR, pygame.Rect(160, 698, 100, 30)) #Draws the input box
+        pygame.draw.rect(screen, INPUT_BOX_COLOR, pygame.Rect(160, 640, 100, 30)) #Draws the input box
         comment = font2.render("What SET did you find?", True, (0,0,0))
-        screen.blit(comment, (25, 705))
+        screen.blit(comment, (25, 650))
         input_text = font.render(user_input, True, "white") #Renders the input text
-        screen.blit(input_text, (170, 705)) #Draws the input text
+        screen.blit(input_text, (170, 648)) #Draws the input text
         pygame.display.flip()
 
     return user_input.split(', ')
-def draw_score_computer():
-    score_computer = 0
-    text = font1.render("Score Computer: ", score_computer, True, (0,0,0))
-    screen.blit(text, (720, 25))
+def draw_score_computer(score_computer):
+    text = font.render(f"Score Computer: {score_computer}", True, (0,0,0))
+    screen.blit(text, (SCREEN_WIDTH - 250, 40))
     pygame.display.flip()
+
 
 # Main game loop
 while len(list_of_81_random_numbers) > 11:
@@ -177,11 +179,11 @@ while len(list_of_81_random_numbers) > 11:
 
     screen.fill(BACKGROUND_COLOR)
     draw_cards(list_12_random_numbers)
-    draw_instructions()
+    draw_instructions()  
+    draw_score_computer(score_comp)
     pygame.display.flip()
-
     user_input = get_user_input()
-
+   
     if user_input and user_input[0]:
         user_input = list(map(int, user_input))
         if sorted(user_input) in valid_sets:
@@ -207,7 +209,10 @@ while len(list_of_81_random_numbers) > 11:
             pygame.time.wait(1000)
             answer_computer = valid_sets[0]
             text = font1.render(f"Computer found a set: {answer_computer[0], answer_computer[1], answer_computer[2]}", True, (0,0,0))
-            screen.blit(text, (200, 650))
+            screen.blit(text, (300, 640))
+            score_comp += 1
+            #draw_score_computer(score_comp)
+            
             pygame.display.flip()
             pygame.time.wait(2000)
             for index in sorted(answer_computer, reverse=True):
@@ -217,7 +222,7 @@ while len(list_of_81_random_numbers) > 11:
             screen.blit(text, (150, 370))
             pygame.display.flip()
             pygame.time.wait(1000)
-            del list_of_81_random_numbers[9:12] #Removes three cards if no valid SETs are found. 
+            del list_of_81_random_numbers[9:12] #Removes three cards if no valid SETs are found.
         start_ticks = pygame.time.get_ticks()
 
     if len(list_of_81_random_numbers) < 12 and len(valid_sets) == 0:
