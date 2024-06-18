@@ -7,9 +7,9 @@ from itertools import combinations
 pygame.init()
 
 # Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = 1000, 1000 #Dimensions of the game window
+SCREEN_WIDTH, SCREEN_HEIGHT = 1000, 800 #Dimensions of the game window
 CARD_WIDTH, CARD_HEIGHT = 100, 150 #Dimensions of each card image
-CARD_GAP = 30 #Space between cards
+CARD_GAP = 60 #Space between cards
 FONT_SIZE = 24 
 TIMEOUT = 30 #Timelimit for the user to find a SET
 INPUT_BOX_COLOR = (200, 200, 200) #Color of the input box
@@ -125,8 +125,8 @@ def draw_cards(card_indices): #Draws the cards on the screen
         card = list_of_81_cards[card_index] #Retrieves the card attributes
         card_name = ''.join(card) #Concatenates card attributes to form the card name
         card_image = card_images[card_name] #Retrieves the card image
-        x = (i % 4) * (CARD_WIDTH + CARD_GAP) + 50 #Calculates the position to draw the card
-        y = (i // 4) * (CARD_HEIGHT + CARD_GAP + 30) + 160 #Calculates the position to draw the card
+        x = (i % 6) * (CARD_WIDTH + CARD_GAP) + 50 #Calculates the position to draw the card
+        y = (i // 6) * (CARD_HEIGHT + CARD_GAP + 60) + 160 #Calculates the position to draw the card
         screen.blit(card_image, (x, y)) #Draws the card image on the screen
         number_text = font.render(str(i + 1), True, (0, 0, 0)) #Renders the card number
         screen.blit(number_text, (x + 45, y + 170)) #Draws the card number above the card
@@ -152,9 +152,9 @@ def get_user_input(): #Captures user input from the keyboard
         draw_instructions()
         if not draw_timer():
             input_active = False
-        pygame.draw.rect(screen, INPUT_BOX_COLOR, pygame.Rect(20, 800, 760, 30)) #Draws the input box
+        pygame.draw.rect(screen, INPUT_BOX_COLOR, pygame.Rect(20, 700, 760, 30)) #Draws the input box
         input_text = font.render(user_input, True, (0, 0, 0)) #Renders the input text
-        screen.blit(input_text, (25, 555)) #Draws the input text
+        screen.blit(input_text, (25, 700)) #Draws the input text
         pygame.display.flip()
 
     return user_input.split(', ')
@@ -191,7 +191,7 @@ while len(list_of_81_random_numbers) > 11:
         else:
             del list_of_81_random_numbers[9:12] #Removes three cards if no valid SETs are found. 
 
-    if len(list_of_81_random_numbers) < 12:
+    if len(list_of_81_random_numbers) < 3:
         break
 
 pygame.quit()
