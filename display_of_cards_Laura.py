@@ -7,25 +7,45 @@ from itertools import combinations
 pygame.init()
 
 # Constants
-SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600 #Dimensions of the game window
+SCREEN_WIDTH, SCREEN_HEIGHT = 1000, 1000 #Dimensions of the game window
 CARD_WIDTH, CARD_HEIGHT = 100, 150 #Dimensions of each card image
-CARD_GAP = 20 #Space between cards
+CARD_GAP = 30 #Space between cards
 FONT_SIZE = 24 
 TIMEOUT = 30 #Timelimit for the user to find a SET
 INPUT_BOX_COLOR = (200, 200, 200) #Color of the input box
-BACKGROUND_COLOR = (255, 255, 255) #Background color of the game window
+BACKGROUND_COLOR = ("ghostwhite") #Background color of the game window
 
 # Set up the display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #Create a game window with specified width and height
 pygame.display.set_caption("SET Game") #Sets the window title
 
-# Load card images
-card_directory = "C:\\1 - Laura disque dur\\Second year UU\\Python and R\\Python folder\\GitHub\\SET\\kaarten" #Path to the directory containing the cards
-card_images = {} #Dictionary to store loaded card images
-for filename in os.listdir(card_directory): #Iterates through all files in the specified directory
-    if filename.endswith(".gif"): #Checks if the file is a GIF image
-        card_name = filename[:-4] #Strips the "gif" extension from the filename to use as a key
-        card_images[card_name] = pygame.image.load(os.path.join(card_directory, filename)) #Loads the image and stores it in the card_images dictionary
+# Card attributes
+color = ['red', 'green', 'purple']
+symbol = ['oval', 'squiggle', 'diamond']
+shading = ['filled', 'shaded', 'empty']
+number = ['1', '2', '3']
+
+# Generate all possible cards
+list_of_81_cards_computer = [f"{col}{sym}{shad}{num}" 
+                    for col in color
+                    for sym in symbol
+                    for shad in shading
+                    for num in number]
+
+# these 2 lists are identical, only the way the list is constructed is different
+list_of_81_cards = [[col, sym, shad, num] 
+                        for col in color
+                        for sym in symbol
+                        for shad in shading
+                        for num in number]
+
+list_of_81_random_numbers = random.sample(range(0, 81), 81)
+
+list_12_random_numbers = list_of_81_random_numbers[:12]
+
+# Load card images into a dictionary
+card_images = {name: pygame.image.load(f'kaarten/{name}.gif') for name in list_of_81_cards_computer}
+
 
 # Game variables
 color = ['red', 'green', 'purple']
@@ -106,10 +126,10 @@ def draw_cards(card_indices): #Draws the cards on the screen
         card_name = ''.join(card) #Concatenates card attributes to form the card name
         card_image = card_images[card_name] #Retrieves the card image
         x = (i % 4) * (CARD_WIDTH + CARD_GAP) + 50 #Calculates the position to draw the card
-        y = (i // 4) * (CARD_HEIGHT + CARD_GAP) + 100 #Calculates the position to draw the card
+        y = (i // 4) * (CARD_HEIGHT + CARD_GAP + 30) + 160 #Calculates the position to draw the card
         screen.blit(card_image, (x, y)) #Draws the card image on the screen
         number_text = font.render(str(i + 1), True, (0, 0, 0)) #Renders the card number
-        screen.blit(number_text, (x, y - 25)) #Draws the card number above the card
+        screen.blit(number_text, (x + 45, y + 170)) #Draws the card number above the card
 
 def get_user_input(): #Captures user input from the keyboard
     user_input = "" #Stores the user's input string
@@ -132,7 +152,7 @@ def get_user_input(): #Captures user input from the keyboard
         draw_instructions()
         if not draw_timer():
             input_active = False
-        pygame.draw.rect(screen, INPUT_BOX_COLOR, pygame.Rect(20, 550, 760, 30)) #Draws the input box
+        pygame.draw.rect(screen, INPUT_BOX_COLOR, pygame.Rect(20, 800, 760, 30)) #Draws the input box
         input_text = font.render(user_input, True, (0, 0, 0)) #Renders the input text
         screen.blit(input_text, (25, 555)) #Draws the input text
         pygame.display.flip()
