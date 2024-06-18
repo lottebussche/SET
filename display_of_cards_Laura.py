@@ -192,7 +192,7 @@ while len(list_of_81_random_numbers) > 11:
             del list_of_81_random_numbers[9:11] #Removes two cards if no valid SETs are found. If we want to remove 3 cards we need to write [9:12], oronly one [11]
         start_ticks = pygame.time.get_ticks()
 
-    if len(list_of_81_random_numbers) < 12:
+    if len(list_of_81_random_numbers) < 3:
         break
 
 pygame.quit()
