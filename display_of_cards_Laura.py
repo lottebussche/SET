@@ -10,7 +10,7 @@ SCREEN_WIDTH, SCREEN_HEIGHT = 1000, 800 #Dimensions of the game window
 CARD_WIDTH, CARD_HEIGHT = 100, 150 #Dimensions of each card image
 CARD_GAP = 60 #Space between cards
 FONT_SIZE = 24 
-TIMEOUT = 30 #Timelimit for the user to find a SET
+TIMEOUT = 5 #Timelimit for the user to find a SET
 INPUT_BOX_COLOR = (200, 200, 200) #Color of the input box
 BACKGROUND_COLOR = ("ghostwhite") #Background color of the game window
 
@@ -189,6 +189,7 @@ while len(list_of_81_random_numbers) > 11:
                 del list_of_81_random_numbers[index - 1]
         else:
             del list_of_81_random_numbers[9:12] #Removes three cards if no valid SETs are found. 
+        start_ticks = pygame.time.get_ticks()
 
     if len(list_of_81_random_numbers) < 3:
         break
@@ -196,5 +197,5 @@ while len(list_of_81_random_numbers) > 11:
 pygame.quit()
 
 
-#####NOTE
+#####
 # Render sonething means to process and display it visually
