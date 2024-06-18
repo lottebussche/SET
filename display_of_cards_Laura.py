@@ -182,7 +182,7 @@ while len(list_of_81_random_numbers) > 11:
         else:
             print("Unfortunately not.")
     else:
-        print("Timeout! The computer will try.")
+        print("Timeout! The computer will try.") # Dit werkt niet
         if valid_sets:
             answer_computer = valid_sets[0]
             print(f"Computer found a set: {answer_computer}")
@@ -192,9 +192,11 @@ while len(list_of_81_random_numbers) > 11:
             del list_of_81_random_numbers[9:11] #Removes two cards if no valid SETs are found. If we want to remove 3 cards we need to write [9:12], oronly one [11]
         start_ticks = pygame.time.get_ticks()
 
-    if len(list_of_81_random_numbers) < 3:
-        break
+    if len(list_of_81_random_numbers) < 12:
+        if len(valid_sets) == 0:
+            break
 
+            
 pygame.quit()
 
 
