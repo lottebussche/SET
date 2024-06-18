@@ -10,6 +10,8 @@ SCREEN_WIDTH, SCREEN_HEIGHT = 1000, 800 #Dimensions of the game window
 CARD_WIDTH, CARD_HEIGHT = 100, 150 #Dimensions of each card image
 CARD_GAP = 60 #Space between cards
 FONT_SIZE = 24 
+FONT_SIZE1 = 50
+FONT_SIZE2 = 12
 TIMEOUT = 5 #Timelimit for the user to find a SET
 INPUT_BOX_COLOR = (200, 200, 200) #Color of the input box
 BACKGROUND_COLOR = ("ghostwhite") #Background color of the game window
@@ -56,6 +58,8 @@ list_of_81_random_numbers = random.sample(range(0, 81), 81) #list of 81 unique r
 
 # Fonts
 font = pygame.font.Font(None, FONT_SIZE) #Creates a font object with the specified size
+font1 = pygame.font.Font(None, FONT_SIZE1)
+font2 = pygame.font.Font(None, FONT_SIZE2)
 
 # Timer
 start_ticks = pygame.time.get_ticks() #Records the initial time when the game starts
@@ -174,17 +178,31 @@ while len(list_of_81_random_numbers) > 11:
     if user_input and user_input[0]:
         user_input = list(map(int, user_input))
         if sorted(user_input) in valid_sets:
-            print("Good Job!")
+            text = font1.render("Good Job!", True, (0,0,0))
+            screen.blit(text, (150, 370))
+            pygame.display.flip()
+            pygame.time.wait(2000)
             for index in sorted(user_input, reverse=True):
                 del list_of_81_random_numbers[index - 1] #Removes the cards forming the SET from the list
             start_ticks = pygame.time.get_ticks() #Resets the timer
         else:
-            print("Unfortunately not.")
+            text = font1.render("Unfortunately not.", True, (0,0,0))
+            screen.blit(text, (150, 370))
+            pygame.display.flip()
+            pygame.time.wait(2000)
     else:
-        print("Timeout! The computer will try.") # Dit werkt niet
+        text = font1.render("Time out! The computer will have a try.", True, (0,0,0))
+        screen.blit(text, (150, 370))
+        pygame.display.flip()
+        pygame.time.wait(1000)
         if valid_sets:
+            pygame.display.flip()
+            pygame.time.wait(1000)
             answer_computer = valid_sets[0]
-            print(f"Computer found a set: {answer_computer}")
+            text = font1.render(f"Computer found a set: {answer_computer[0], answer_computer[1], answer_computer[2]}", True, (0,0,0))
+            screen.blit(text, (200, 650))
+            pygame.display.flip()
+            pygame.time.wait(5000)
             for index in sorted(answer_computer, reverse=True):
                 del list_of_81_random_numbers[index - 1]
         else:
