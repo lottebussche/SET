@@ -169,8 +169,7 @@ while len(list_of_81_random_numbers) > 11:
             for index in sorted(answer_computer, reverse=True):
                 del list_of_81_random_numbers[index - 1]
         else:
-            del list_of_81_random_numbers[9:11] #Removes two cards if no valid SETs are found. If we want to remove 3 cards we need to write [9:12], oronly one [11]
-        start_ticks = pygame.time.get_ticks()
+            del list_of_81_random_numbers[9:12] #Removes three cards if no valid SETs are found. 
 
     if len(list_of_81_random_numbers) < 12:
         break
