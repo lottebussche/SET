@@ -152,6 +152,9 @@ def check_format(input_string):
 def get_user_input(): #Captures user input from the keyboard
     user_input = "" #Stores the user's input string
     input_active = True #Controls the input loop
+    blink = True # Cursor visibility
+    cursor_timer = pygame.time.get_ticks() # Timer for cursor blinking
+
     while input_active: 
         for event in pygame.event.get(): #Handles Pygame events
             if event.type == pygame.QUIT: #Exits the game if the window is closed
@@ -164,18 +167,26 @@ def get_user_input(): #Captures user input from the keyboard
                     user_input = user_input[:-1]
                 else:
                     user_input += event.unicode #Appends the pressed key to the input string
+        if pygame.time.get_ticks() - cursor_timer > 500: # Toggle cursor every 500ms
+            blink = not blink
+            cursor_timer = pygame.time.get_ticks()
 
         screen.fill(background_color) #Clears the screen
         draw_cards(list_12_random_numbers) #Redraws the cards, instructions, and timer
         draw_instructions()
         if not draw_timer():
             return "", "timeout"
+        
         pygame.draw.rect(screen, input_box_color, pygame.Rect(160, 640, 100, 30)) #Draws the input box
         comment = font2.render("What SET did you find?", True, (0,0,0))
         screen.blit(comment, (25, 650))
         input_text = font.render(user_input, True, "white") #Renders the input text
         screen.blit(input_text, (170, 648)) #Draws the input text
+        if blink:
+            cursor_x = 170 + input_text.get_width() + 2
+            pygame.draw.line(screen, "white", (cursor_x, 648), (cursor_x, 668), 2)
         pygame.display.flip()
+        
     if not check_format(user_input):
         return "Oups! Wrong format. Please enter the numbers in the correct format.", "format_error"
 
