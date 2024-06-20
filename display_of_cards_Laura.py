@@ -12,7 +12,7 @@ card_gap = 40 #Space between cards
 font_size_1 = 24 
 font_size_2 = 50
 font_size_3 = 18
-timeout = 10 #Timelimit for the user to find a SET
+timeout = 30 #Timelimit for the user to find a SET
 input_box_color = ("orchid4") #Color of the input box
 background_color = ("ghostwhite") #Background color of the game window
 score_comp = 0 #start score of computer
@@ -230,20 +230,17 @@ while len(list_of_81_random_numbers) > 11:
             cumulative_score = score_us - score_comp
             if cumulative_score in range(-3,0):
                 timeout = 35
-                if score_us == -1:
-                    text = font1.render("Level down: time is now 35 seconds!", True, (0,0,0))
-                    screen.blit(text, (300, 640))
-            if cumulative_score in range(1,8):
+            if cumulative_score in range(2,5):
                 timeout = 25
-                if score_us == 4:
+                if score_us == 2:
                     text = font1.render("Level up: time is now 25 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
-            if score_us in range(8,12):
+            if cumulative_score in range(5,8):
                 timeout = 20
-                if score_us == 8:
+                if score_us == 5:
                     text = font1.render("Level up: time is now 20 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
-            if score_us >= 12:
+            if cumulative_score >= 8:
                 timeout = 15
                 if score_us == 8:
                     text = font1.render("Level up: time is now 15 seconds!", True, (0,0,0))
@@ -280,6 +277,12 @@ while len(list_of_81_random_numbers) > 11:
                 if score_us == -1:
                     text = font1.render("Level down: time is now 35 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
+            if cumulative_score in range(2,5):
+                timeout = 25
+            if cumulative_score in range(5,8):
+                timeout = 20
+            if cumulative_score >= 8:
+                timeout = 15
             draw_score_computer(score_comp)
             draw_score_user(score_us)
             
@@ -290,6 +293,8 @@ while len(list_of_81_random_numbers) > 11:
         else:
             text = font1.render("No SET found among these cards.", True, (0,0,0))
             screen.blit(text, (300, 640))
+            draw_score_computer(score_comp)
+            draw_score_user(score_us)
             pygame.display.flip()
             pygame.time.wait(1000)
             del list_of_81_random_numbers[9:12] #Removes three cards if no valid SETs are found.
