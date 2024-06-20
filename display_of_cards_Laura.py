@@ -265,5 +265,3 @@ while len(list_of_81_random_numbers) > 11:
             
 pygame.quit()
 
-
-# Render sonething means to process and display it visually
