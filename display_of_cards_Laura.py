@@ -12,7 +12,7 @@ card_gap = 40 #Space between cards
 font_size_1 = 24 
 font_size_2 = 50
 font_size_3 = 18
-timeout = 30 #Timelimit for the user to find a SET
+timeout = 10 #Timelimit for the user to find a SET
 input_box_color = ("orchid4") #Color of the input box
 background_color = ("ghostwhite") #Background color of the game window
 score_comp = 0 #start score of computer
@@ -227,7 +227,13 @@ while len(list_of_81_random_numbers) > 11:
             text = font1.render("Good Job!", True, (0,0,0))
             screen.blit(text, (150, 370))
             score_us += 1
-            if score_us in range(1,8):
+            cumulative_score = score_us - score_comp
+            if cumulative_score in range(-3,0):
+                timeout = 35
+                if score_us == -1:
+                    text = font1.render("Level down: time is now 35 seconds!", True, (0,0,0))
+                    screen.blit(text, (300, 640))
+            if cumulative_score in range(1,8):
                 timeout = 25
                 if score_us == 4:
                     text = font1.render("Level up: time is now 25 seconds!", True, (0,0,0))
@@ -268,10 +274,12 @@ while len(list_of_81_random_numbers) > 11:
             text = font1.render(f"Computer found a set: {answer_computer[0], answer_computer[1], answer_computer[2]}", True, (0,0,0))
             screen.blit(text, (300, 640))
             score_comp += 1
-            if score_us >= 1:
-                timeout = 20
-            else: 
-                timeout = 30
+            cumulative_score = score_us - score_comp
+            if cumulative_score in range(-3,0):
+                timeout = 35
+                if score_us == -1:
+                    text = font1.render("Level down: time is now 35 seconds!", True, (0,0,0))
+                    screen.blit(text, (300, 640))
             draw_score_computer(score_comp)
             draw_score_user(score_us)
             
