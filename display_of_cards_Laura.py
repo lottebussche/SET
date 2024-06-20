@@ -227,6 +227,23 @@ while len(list_of_81_random_numbers) > 11:
             text = font1.render("Good Job!", True, (0,0,0))
             screen.blit(text, (150, 370))
             score_us += 1
+            if score_us in range(1,8):
+                timeout = 25
+                if score_us == 4:
+                    text = font1.render("Level up: time is now 25 seconds!", True, (0,0,0))
+                    screen.blit(text, (300, 640))
+            if score_us in range(8,12):
+                timeout = 20
+                if score_us == 8:
+                    text = font1.render("Level up: time is now 20 seconds!", True, (0,0,0))
+                    screen.blit(text, (300, 640))
+            if score_us >= 12:
+                timeout = 15
+                if score_us == 8:
+                    text = font1.render("Level up: time is now 15 seconds!", True, (0,0,0))
+                    screen.blit(text, (300, 640))
+            else: 
+                timeout = 30
             draw_score_user(score_us)       # show score of user
             draw_score_computer(score_comp) # show score of computer
             pygame.display.flip()
@@ -251,6 +268,10 @@ while len(list_of_81_random_numbers) > 11:
             text = font1.render(f"Computer found a set: {answer_computer[0], answer_computer[1], answer_computer[2]}", True, (0,0,0))
             screen.blit(text, (300, 640))
             score_comp += 1
+            if score_us >= 1:
+                timeout = 20
+            else: 
+                timeout = 30
             draw_score_computer(score_comp)
             draw_score_user(score_us)
             
