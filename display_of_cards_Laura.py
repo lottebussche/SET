@@ -228,7 +228,7 @@ while len(list_of_81_random_numbers) > 11:
                 del list_of_81_random_numbers[index - 1]
         else:
             text = font1.render("No SET found among these cards.", True, (0,0,0))
-            screen.blit(text, (150, 370))
+            screen.blit(text, (300, 640))
             pygame.display.flip()
             pygame.time.wait(1000)
             del list_of_81_random_numbers[9:12] #Removes three cards if no valid SETs are found.
