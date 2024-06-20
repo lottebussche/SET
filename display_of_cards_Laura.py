@@ -137,6 +137,18 @@ def draw_cards(card_indices): #Draws the cards on the screen
         number_text = font.render(str(i + 1), True, (0, 0, 0)) #Renders the card number
         screen.blit(number_text, (x + 45, y + 170)) #Draws the card number above the card
 
+def check_format(input_string):
+    try:
+        numbers = input_string.strip().split(',')
+        if len(numbers) != 3:
+            return False
+        for number in numbers:
+            if not number.strip().isdigit():
+                return False
+        return True
+    except ValueError:
+        return False
+
 def get_user_input(): #Captures user input from the keyboard
     user_input = "" #Stores the user's input string
     input_active = True #Controls the input loop
@@ -157,15 +169,18 @@ def get_user_input(): #Captures user input from the keyboard
         draw_cards(list_12_random_numbers) #Redraws the cards, instructions, and timer
         draw_instructions()
         if not draw_timer():
-            input_active = False
+            return "", "timeout"
         pygame.draw.rect(screen, input_box_color, pygame.Rect(160, 640, 100, 30)) #Draws the input box
         comment = font2.render("What SET did you find?", True, (0,0,0))
         screen.blit(comment, (25, 650))
         input_text = font.render(user_input, True, "white") #Renders the input text
         screen.blit(input_text, (170, 648)) #Draws the input text
         pygame.display.flip()
+    if not check_format(user_input):
+        return "Oups! Wrong format. Please enter the numbers in the correct format.", "format_error"
 
-    return user_input.split(', ')
+    return user_input.split(','), "valid"
+
 def draw_score_computer(score_computer):
     text = font.render(f"Score Computer: {score_computer}", True, (0,0,0))
     screen.blit(text, (screen_width - 250, 40))
@@ -185,9 +200,15 @@ while len(list_of_81_random_numbers) > 11:
     screen.fill(background_color)
     draw_cards(list_12_random_numbers)
     draw_instructions()  
-    
     pygame.display.flip()
-    user_input = get_user_input()
+    user_input, status = get_user_input()
+
+    if status == "format_error":
+        text = font1.render(user_input, True, (0,0,0))
+        screen.blit(text, (150, 370))
+        pygame.display.flip()
+        pygame.time.wait(2000)
+        continue
    
     if user_input and user_input[0]:
         user_input = list(map(int, user_input))
