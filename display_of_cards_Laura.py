@@ -155,7 +155,7 @@ def get_user_input():
     user_input = "" #Stores the user's input string
     input_active = True #Controls the input loop
     blink = True # Cursor visibility
-    cursor_timer = pygame.time.get_ticks() # Timer for cursor blinking
+    timer_of_the_cursor = pygame.time.get_ticks() # Timer for cursor blinking
 
     while input_active: 
         for event in pygame.event.get(): #Handles Pygame events
