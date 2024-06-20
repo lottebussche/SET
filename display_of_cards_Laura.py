@@ -227,23 +227,23 @@ while len(list_of_81_random_numbers) > 11:
             text = font1.render("Good Job!", True, (0,0,0))
             screen.blit(text, (150, 370))
             score_us += 1
-            cumulative_score = score_us - score_comp
+            cumulative_score = score_us - score_comp #calculating the difference in score, are you better then the comp?
             if cumulative_score in range(-3,0):
                 timeout = 35
             if cumulative_score in range(2,5):
                 timeout = 25
-                if score_us == 2:
-                    text = font1.render("Level up: time is now 25 seconds!", True, (0,0,0))
+                if cumulative_score == 2:
+                    text = font1.render("Level 2: time is now 25 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
             if cumulative_score in range(5,8):
                 timeout = 20
-                if score_us == 5:
-                    text = font1.render("Level up: time is now 20 seconds!", True, (0,0,0))
+                if cumulative_score == 5:
+                    text = font1.render("Level 3: time is now 20 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
             if cumulative_score >= 8:
                 timeout = 15
-                if score_us == 8:
-                    text = font1.render("Level up: time is now 15 seconds!", True, (0,0,0))
+                if cumulative_score == 8:
+                    text = font1.render("Final level: time is now 15 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
             else: 
                 timeout = 30
@@ -274,9 +274,9 @@ while len(list_of_81_random_numbers) > 11:
             cumulative_score = score_us - score_comp
             if cumulative_score in range(-3,0):
                 timeout = 35
-                if score_us == -1:
+                if cumulative_score == -1:
                     text = font1.render("Level down: time is now 35 seconds!", True, (0,0,0))
-                    screen.blit(text, (300, 640))
+                    screen.blit(text, (300, 400))
             if cumulative_score in range(2,5):
                 timeout = 25
             if cumulative_score in range(5,8):
