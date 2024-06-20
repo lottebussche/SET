@@ -188,7 +188,7 @@ def get_user_input(): #Captures user input from the keyboard
         pygame.display.flip()
         
     if not check_format(user_input):
-        return "Oups! Wrong format. Please enter the numbers in the correct format.", "format_error"
+        return "Oops! Wrong format. Please enter the numbers in the correct format.", "format_error"
 
     return user_input.split(','), "valid"
 
@@ -229,7 +229,7 @@ while len(list_of_81_random_numbers) > 11:
             score_us += 1
             cumulative_score = score_us - score_comp #calculating the difference in score, are you better then the comp?
             if cumulative_score in range(-3,0):
-                timeout = 35
+                timeout = 40
             if cumulative_score in range(2,5):
                 timeout = 25
                 if cumulative_score == 2:
@@ -273,9 +273,9 @@ while len(list_of_81_random_numbers) > 11:
             score_comp += 1
             cumulative_score = score_us - score_comp
             if cumulative_score in range(-3,0):
-                timeout = 35
+                timeout = 40
                 if cumulative_score == -1:
-                    text = font1.render("Level down: time is now 35 seconds!", True, (0,0,0))
+                    text = font1.render("Level down: time is now 40 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 400))
             if cumulative_score in range(2,5):
                 timeout = 25
