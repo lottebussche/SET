@@ -299,6 +299,16 @@ while len(list_of_81_random_numbers) > 11: # As long as the list of the 81 cards
         else: #If there are no SETs in the 12 cards on the table
             text = font1.render("No SET found among these cards.", True, (0,0,0))
             screen.blit(text, (300, 640))
+            cumulative_score = score_us - score_comp
+            # The part below is already discussed in the part where the user is correct. This is the same as before.
+            if cumulative_score in range(-20,-1): 
+                timeout = 40
+            if cumulative_score in range(2,5):
+                timeout = 25
+            if cumulative_score in range(5,8):
+                timeout = 20
+            if cumulative_score >= 8:
+                timeout = 15
             draw_score_computer(score_comp)
             draw_score_user(score_us)
             pygame.display.flip()
