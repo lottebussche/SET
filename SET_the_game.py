@@ -209,6 +209,7 @@ def draw_score_user(score_user):
 
 # Main game loop
 while len(list_of_81_random_numbers) > 11: # As long as the list of the 81 cards is bigger than 11, so there are 12 cards on the table, the game should run.
+    list_12_random_numbers = list_of_81_random_numbers[:12]
     cards = [SET(list_of_81_cards[i]) for i in list_12_random_numbers] # These are the cards that are displayed. They have a random index from the first 12 numbers of the list of 81 numbers in random order.
     valid_sets = find_all_sets(cards) # The valid sets are found.
 
