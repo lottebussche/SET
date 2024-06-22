@@ -217,7 +217,8 @@ while len(list_of_81_random_numbers) > 11: # As long as the list of the 81 cards
     draw_cards(list_12_random_numbers) # The cards are displayed on the screen.
     draw_instructions() # The instructions are displayed on the screen.
     pygame.display.flip()
-    user_input, status = get_user_input() 
+    user_input, status = get_user_input()
+    print(timeout) 
 
     if status == "format_error":
         text = font1.render(user_input, True, (0,0,0))
@@ -235,24 +236,24 @@ while len(list_of_81_random_numbers) > 11: # As long as the list of the 81 cards
             cumulative_score = score_us - score_comp # Calculating the difference in score, are you better then the computer?
             if cumulative_score in range(-20,-1): # If the score of the user is below the score of the computer, you get 40 seconds instead of 30 seconds.
                 timeout = 40
-            if cumulative_score in range(2,5): # If the score of the user is above the score of the computer (with more than 2 or less than 5), you get 25 seconds to find a SET.
+            elif cumulative_score in range(2,5): # If the score of the user is above the score of the computer (with more than 2 or less than 5), you get 25 seconds to find a SET.
                 timeout = 25
                 if cumulative_score == 2: # If you have more than 2 points more than the computer, you go a level up. 
                     text = font1.render("Level 2: time is now 25 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
-            if cumulative_score in range(5,8): # If the score of the user is more than 5 points, and less than 8 points more than the computer, you have only 20 seconds to find a SET.
+            elif cumulative_score in range(5,8): # If the score of the user is more than 5 points, and less than 8 points more than the computer, you have only 20 seconds to find a SET.
                 timeout = 20
                 if cumulative_score == 5: # If you have 5 points more than the computer, you go a level up.
                     text = font1.render("Level 3: time is now 20 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
-            if cumulative_score >= 8: # When you have more than 8 points more than the computer, you only have 15 seconds to find a SET. 
+            elif cumulative_score >= 8: # When you have more than 8 points more than the computer, you only have 15 seconds to find a SET. 
                 timeout = 15 
                 if cumulative_score == 8: # If you have 8 points more than the computer, you go to the final level.
                     text = font1.render("Final level: time is now 15 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 640))
             else: 
                 timeout = 30
-            draw_score_user(score_us)       # show score of user
+            draw_score_user(score_us)      # show score of user
             draw_score_computer(score_comp) # show score of computer
             pygame.display.flip()
             pygame.time.wait(2000) # it should wait, since otherwise the game would immediately continue and the message is shown for a very short time. 
@@ -283,12 +284,14 @@ while len(list_of_81_random_numbers) > 11: # As long as the list of the 81 cards
                 if cumulative_score == -2:
                     text = font1.render("Level down: time is now 40 seconds!", True, (0,0,0))
                     screen.blit(text, (300, 400))
-            if cumulative_score in range(2,5):
+            elif cumulative_score in range(2,5):
                 timeout = 25
-            if cumulative_score in range(5,8):
+            elif cumulative_score in range(5,8):
                 timeout = 20
-            if cumulative_score >= 8:
+            elif cumulative_score >= 8:
                 timeout = 15
+            else: 
+                timeout = 30
             draw_score_computer(score_comp)
             draw_score_user(score_us)
             
@@ -303,12 +306,14 @@ while len(list_of_81_random_numbers) > 11: # As long as the list of the 81 cards
             # The part below is already discussed in the part where the user is correct. This is the same as before.
             if cumulative_score in range(-20,-1): 
                 timeout = 40
-            if cumulative_score in range(2,5):
+            elif cumulative_score in range(2,5):
                 timeout = 25
-            if cumulative_score in range(5,8):
+            elif cumulative_score in range(5,8):
                 timeout = 20
-            if cumulative_score >= 8:
+            elif cumulative_score >= 8:
                 timeout = 15
+            else: 
+                timeout = 30
             draw_score_computer(score_comp)
             draw_score_user(score_us)
             pygame.display.flip()
