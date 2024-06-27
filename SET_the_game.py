@@ -190,8 +190,8 @@ def get_user_input():
         pygame.display.flip()
     
     
-    if not check_format(user_input):
-        return "Oops! Wrong format. Please enter the numbers in the correct format.", "format_error"
+    if not check_format(user_input): # if the user has an incorrect input, it should display this text.
+        return "Oops! Wrong format.", "format_error"
 
     return user_input.split(','), "valid"
 
@@ -218,10 +218,9 @@ while len(list_of_81_random_numbers) > 11: # As long as the list of the 81 cards
     draw_instructions() # The instructions are displayed on the screen.
     pygame.display.flip()
     user_input, status = get_user_input()
-    print(timeout) 
 
-    if status == "format_error":
-        text = font1.render(user_input, True, (0,0,0))
+    if status == "format_error": # if there is a wrong input
+        text = font1.render(user_input, True, (0,0,0)) # it should display, Oops! Wrong format. 
         screen.blit(text, (150, 370))
         pygame.display.flip()
         pygame.time.wait(2000)
